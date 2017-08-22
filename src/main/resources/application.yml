@@ -3,26 +3,6 @@ server:
 
 spring:
   output.ansi.enabled: always
-  datasource:
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&connectionCollation=utf8mb4_unicode_ci&characterEncoding=UTF-8
-    username: root
-    password: 
-    driver-class-name: com.mysql.jdbc.Driver
-    # 使用druid数据源
-    type: com.alibaba.druid.pool.DruidDataSource
-    filters: stat
-    maxActive: 20
-    initialSize: 1
-    maxWait: 60000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 1
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
     
 # mybatis配置
 mybatis:
@@ -64,7 +44,7 @@ datasource:
     # 关闭abanded连接时输出错误日志
     logAbandoned: true
   read:
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&connectionCollation=utf8mb4_unicode_ci&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/test-read?useUnicode=true&connectionCollation=utf8mb4_unicode_ci&characterEncoding=UTF-8
     username: root
     password: 
     driver-class-name: com.mysql.jdbc.Driver

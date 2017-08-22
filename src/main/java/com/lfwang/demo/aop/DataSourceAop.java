@@ -1,6 +1,6 @@
 package com.lfwang.demo.aop;
 
-import com.lfwang.demo.datasource.DataSourceContextHolder;
+import com.lfwang.demo.config.DataSourceContextHolder;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
