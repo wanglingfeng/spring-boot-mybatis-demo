@@ -4,14 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lfwang.demo.repository.mapper.ProductMapper">
 
-    <!-- 开启基于redis的二级缓存 -->
-    <!--<cache type="com.wooyoo.learning.util.RedisCache"/>-->
-
     <select id="get" resultType="Product">
         SELECT * FROM products WHERE id = #{id} LIMIT 1
     </select>
 
-    <update id="update" parameterType="Product" flushCache="true">
+    <update id="update" parameterType="Product">
         UPDATE products SET name = #{name}, price = #{price} WHERE id = #{id} LIMIT 1
     </update>
 </mapper>
