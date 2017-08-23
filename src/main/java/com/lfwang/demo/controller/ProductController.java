@@ -1,7 +1,6 @@
 package com.lfwang.demo.controller;
 
 import com.lfwang.demo.repository.domain.Product;
-import com.lfwang.demo.repository.mapper.ProductMapper;
 import com.lfwang.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,22 @@ public class ProductController {
     private ProductService productService;
     
     @GetMapping("/{id}")
-    public Product get(@PathVariable long id) {
-        return productService.get(id);
+    public Product getById(@PathVariable long id) {
+        return productService.getById(id);
     }
     
-    @PostMapping("/{id}")
+    @PostMapping
+    public long insert(@RequestParam String name, @RequestParam long price) {
+        return productService.insert(name, price);
+    }
+    
+    @PutMapping("/{id}")
     public void update(@PathVariable long id, @RequestParam String name, @RequestParam long price) {
         productService.update(id, name, price);
+    }
+    
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        productService.deleteById(id);
     }
 }

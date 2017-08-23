@@ -7,7 +7,13 @@ import com.lfwang.demo.repository.domain.Product;
  */
 public interface BaseMapper<T> {
 
-    T get(long id);
+    T getById(long id);
+
+    long insert(Product product);
     
     void update(Product product);
+
+    void deleteById(long id);
+    
+    void delete(Product product);
 }

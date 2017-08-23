@@ -4,6 +4,11 @@ server:
 spring:
   output.ansi.enabled: always
     
+logging:
+  level:
+    # mapper包日志设置为DEBUG级别可以打印出mybatis执行的sql
+    com.lfwang.demo.repository.mapper: DEBUG
+    
 # mybatis配置
 mybatis:
   # 配置映射类所在包名

@@ -14,8 +14,15 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
     
-    public Product get(long id) {
-        return productMapper.get(id);
+    public Product getById(long id) {
+        return productMapper.getById(id);
+    }
+    
+    public long insert(String name, long price) {
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        return productMapper.insert(product);
     }
     
     public void update(long id, String name, long price) {
@@ -24,5 +31,9 @@ public class ProductService {
         product.setName(name);
         product.setPrice(price);
         productMapper.update(product);
+    }
+    
+    public void deleteById(long id) {
+        productMapper.deleteById(id);
     }
 }
