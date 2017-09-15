@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AroundAop {
     
-    @Around("execution(* com.lfwang.demo.service.*.*(..))")
+    @Around("execution(* com.lfwang.demo.service.MessageService.*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         
