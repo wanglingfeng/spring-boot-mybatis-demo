@@ -15,8 +15,8 @@ import java.lang.reflect.Method;
 
 /**
  * 自定义注解解析
- * postProcessBeanFactory方法作用是添加扫描，扫描通过setPackage指定的包种的spring bean
- * postProcessAfterInitialization方法作用是获取指定注解的信息分析并处理
+ * postProcessBeanFactory方法作用是，通过扫描setPackage指定的包下并且使用了自定义注解的类，即是没有使用@Component这种注解也能扫描到
+ * postProcessAfterInitialization方法作用是，获取指定注解的信息分析并处理
  */
 public class MyInfoAnnotationBean implements ApplicationContextAware, BeanFactoryPostProcessor, BeanPostProcessor {
 
@@ -62,6 +62,7 @@ public class MyInfoAnnotationBean implements ApplicationContextAware, BeanFactor
                                 "org.springframework.core.type.filter.TypeFilter",
                                 MyInfoAnnotationBean.class.getClassLoader()));
 
+                // 扫描使用了指定注解的类
                 addIncludeFilter.invoke(scanner, filter);
                 // scan packages
                 Method scan = scannerClass.getMethod("scan", String[].class);
