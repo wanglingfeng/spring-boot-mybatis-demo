@@ -76,3 +76,5 @@ datasource:
     removeAbandonedTimeout: 1800
     # 关闭abanded连接时输出错误日志
     logAbandoned: true
+
+customize.name: josephwlf
