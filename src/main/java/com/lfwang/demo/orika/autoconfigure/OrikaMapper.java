@@ -1,4 +1,4 @@
-package com.lfwang.demo.config;
+package com.lfwang.demo.orika.autoconfigure;
 
 import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Mapper;
@@ -7,11 +7,9 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-@Component
 public class OrikaMapper extends ConfigurableMapper implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;

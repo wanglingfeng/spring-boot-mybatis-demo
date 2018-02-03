@@ -78,3 +78,5 @@ datasource:
     logAbandoned: true
 
 customize.name: josephwlf
+
+orika.custom.message: 'hello all'
