@@ -20,12 +20,11 @@ import java.lang.reflect.Method;
  */
 public class MyInfoAnnotationBean implements ApplicationContextAware, BeanFactoryPostProcessor, BeanPostProcessor {
 
+    private ApplicationContext applicationContext;
+
     private String annotationPackage;
 
     private String[] annotationPackages;
-
-
-    private ApplicationContext applicationContext;
 
     private static final String COMMA_SPLIT_PATTERN = "\\s*[,]+\\s*";
 

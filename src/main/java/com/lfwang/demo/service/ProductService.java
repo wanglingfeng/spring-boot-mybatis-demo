@@ -1,7 +1,9 @@
 package com.lfwang.demo.service;
 
+import com.lfwang.demo.controller.domain.ProductDTO;
 import com.lfwang.demo.repository.domain.Product;
 import com.lfwang.demo.repository.mapper.ProductMapper;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,14 @@ public class ProductService {
 
     @Autowired
     private ProductMapper productMapper;
-    
-    public Product getById(long id) {
-        return productMapper.getById(id);
+
+    @Autowired
+    private MapperFacade mapper;
+
+    public ProductDTO getById(long id) {
+        Product product = productMapper.getById(id);
+
+        return mapper.map(product, ProductDTO.class);
     }
     
     public long insert(String name, long price) {

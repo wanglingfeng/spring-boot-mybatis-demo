@@ -1,6 +1,6 @@
 package com.lfwang.demo.controller;
 
-import com.lfwang.demo.repository.domain.Product;
+import com.lfwang.demo.controller.domain.ProductDTO;
 import com.lfwang.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class ProductController {
     private ProductService productService;
     
     @GetMapping("/{id}")
-    public Product getById(@PathVariable long id) {
+    public ProductDTO getById(@PathVariable long id) {
         return productService.getById(id);
     }
     

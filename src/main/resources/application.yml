@@ -23,7 +23,7 @@ datasource:
   write:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&connectionCollation=utf8mb4_unicode_ci&characterEncoding=UTF-8
     username: root
-    password: 
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
     # 初始化连接大小
@@ -51,7 +51,7 @@ datasource:
   read:
     url: jdbc:mysql://localhost:3306/test-read?useUnicode=true&connectionCollation=utf8mb4_unicode_ci&characterEncoding=UTF-8
     username: root
-    password: 
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
     # 初始化连接大小
