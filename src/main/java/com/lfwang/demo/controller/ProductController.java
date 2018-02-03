@@ -5,6 +5,8 @@ import com.lfwang.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by lfwang on 2017/8/21.
  */
@@ -14,6 +16,11 @@ public class ProductController {
     
     @Autowired
     private ProductService productService;
+
+    @GetMapping
+    public List<ProductDTO> findAll() {
+        return productService.findAll();
+    }
     
     @GetMapping("/{id}")
     public ProductDTO getById(@PathVariable long id) {
