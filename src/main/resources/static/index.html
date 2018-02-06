@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="product-ul">
+        <div>
+            <el-table :data="products" stripe style="width: 100%">
+                <el-table-column type="index" width="50"></el-table-column>
+                <el-table-column label="姓名" width="180">
+                    <template slot-scope="scope">
+                        <el-popover trigger="hover" placement="top">
+                            <p>姓名: {{scope.row.name}}</p>
+                            <p>费用: {{scope.row.price}}</p>
+                            <div slot="reference" class="name-wrapper">
+                                <el-tag size="medium">{{scope.row.name}}</el-tag>
+                            </div>
+                        </el-popover>
+                    </template>
+                </el-table-column>
+                <el-table-column label="操作">
+                    <template slot-scope="scope">
+                        <el-button size="mini" @click="showEdit(scope.row)">编辑</el-button>
+                        <el-button size="mini" type="danger" @click="removeExecute(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+        <div>
+            <el-dialog title="信息" :visible.sync="dialogFormVisible" center :before-close="close">
+                <el-form :model="form" ref="form" label-width="100px">
+                    <el-form-item label="姓名" :label-width="formLabelWidth" prop="name"
+                                  :rules="[{required: true, message: '姓名不能为空'}]">
+                        <el-input type="name" v-model="form.name" auto-complete="off" placeholder="请输入姓名"></el-input>
+                    </el-form-item>
+                    <el-form-item label="费用" :label-width="formLabelWidth" prop="price"
+                                  :rules="[{required: true, message: '费用不能为空'},{type: 'number', message: '费用必须为数字值'}]">
+                        <el-input type="price" v-model.number="form.price" auto-complete="off" placeholder="请输入费用"></el-input>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="close">取 消</el-button>
+                    <el-button type="primary" @click="editExecute">确 定</el-button>
+                </div>
+            </el-dialog>
+        </div>
+        <div style="margin-top: 20px">
+            <el-button @click="create">新建</el-button>
+        </div>
+    </div>
+    <link rel="stylesheet" href="css/element-ui.css">
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/element-ui.js"></script>
+    <script type="application/javascript">
+        const vm = new Vue({
+            el: '#product-ul',
+            data: {
+                products: [],
+                dialogFormVisible: false,
+                form: {
+                    id: '',
+                    name: '',
+                    price: ''
+                },
+                formLabelWidth: '120px'
+            },
+            mounted: function() {
+                this.findAll();
+            },
+            methods: {
+                findAll: function() {
+                    var self = this;
+
+                    axios.get('http://localhost:8080/product')
+                        .then(function (response) {
+                            self.products = response.data
+                        })
+                        .catch(function (reason) {
+                            console.log(reason);
+                        });
+                },
+                create: function() {
+                    var form = this.$refs['form'];
+                    if (null != form) this.$refs['form'].resetFields();
+
+                    this.form.id = '';
+                    this.form.name = '';
+                    this.form.price = '';
+                    this.dialogFormVisible = true;
+                },
+                showEdit: function(row) {
+                    var form = this.$refs['form'];
+                    if (null != form) this.$refs['form'].resetFields();
+
+                    this.form.id = row.id;
+                    this.form.name = row.name;
+                    this.form.price = row.price;
+                    this.dialogFormVisible = true;
+                },
+                editExecute: function() {
+                    var self = this;
+                    this.$refs['form'].validate(function(valid) {
+                        if (valid) {
+                            var params = new URLSearchParams();
+
+                            if ('' === self.form.id) {
+                                params.append('name', self.form.name);
+                                params.append('price', self.form.price);
+                                axios.post('http://localhost:8080/product', params)
+                                .then(function () {
+                                    self.findAll();
+                                    self.close();
+                                    self.$message({
+                                        type: 'success',
+                                        message: '添加成功！'
+                                    })
+                                })
+                                .catch(function (reason) {
+                                    console.log(reason);
+                                });
+                            } else {
+                                params.append('name', self.form.name);
+                                params.append('price', self.form.price);
+                                axios.put('http://localhost:8080/product/' + self.form.id, params)
+                                .then(function () {
+                                    self.findAll();
+                                    self.close();
+                                    self.$message({
+                                        type: 'success',
+                                        message: '修改成功！'
+                                    })
+                                })
+                                .catch(function (reason) {
+                                    console.log(reason);
+                                });
+                            }
+                        } else {
+                            return false;
+                        }
+                    });
+                },
+                removeExecute: function(row) {
+                    var self = this;
+                    this.$confirm('此操作将永久删除该数据，是否继续？', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(function() {
+                        axios.delete('http://localhost:8080/product/' + row.id)
+                        .then(function () {
+                            self.findAll();
+                            self.$message({
+                                type: 'success',
+                                message: '删除成功！'
+                            })
+                        })
+                        .catch(function (reason) {
+                            console.log(reason);
+                        });
+                    }).catch(function (reason) {
+                        console.log(reason);
+                    })
+                },
+                close: function() {
+                    this.dialogFormVisible = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
