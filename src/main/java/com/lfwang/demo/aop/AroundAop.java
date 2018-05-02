@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class AroundAop {
+
+    private static final String WORD = "wlf";
     
     @Around("execution(* com.lfwang.demo.service.MessageService.*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -28,6 +30,17 @@ public class AroundAop {
                     return "FUCK";
                 }
             }
+        }
+
+        return joinPoint.proceed();
+    }
+
+    @Around("execution(* com.lfwang.demo.service.ExecuteService.*(..))")
+    public Object executeAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        String word = (String) joinPoint.getArgs()[0];
+
+        if (WORD.equals(word)) {
+            return null;
         }
 
         return joinPoint.proceed();
