@@ -1,6 +1,6 @@
 package com.lfwang.demo.factory.impl;
 
-import com.lfwang.demo.factory.BaseFactory;
+import com.lfwang.demo.factory.HumanFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
  * @date Created in 2018/5/7
  */
 @Service
-public class FemaleFactoryImpl implements BaseFactory {
+public class FemaleFactory implements HumanFactory {
 
     @Override
-    public String getRouting() {
+    public String getSex() {
         return "female";
     }
 
     @Override
-    public void process(String word) {
+    public void say(String word) {
         System.out.println("im female, i say " + word);
     }
 }

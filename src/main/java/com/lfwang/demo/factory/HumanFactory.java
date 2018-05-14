@@ -4,20 +4,20 @@ package com.lfwang.demo.factory;
  * @author keleguo
  * @date Created in 2018/5/7
  */
-public interface BaseFactory {
+public interface HumanFactory {
 
     /**
-     * 获取路由
+     * 获取性别
      *
      * @return 路由
      */
-    default String getRouting() {
+    default String getSex() {
         return "";
     }
 
     /**
-     * 处理
-     * @param word 单词
+     * say
+     * @param word word
      */
-    void process(String word);
+    void say(String word);
 }

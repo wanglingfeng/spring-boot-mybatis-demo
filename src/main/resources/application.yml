@@ -12,7 +12,7 @@ logging:
 # mybatis配置
 mybatis:
   # 配置映射类所在包名
-  type-aliases-package: com.lfwang.demo.repository.domain
+  type-aliases-package: com.lfwang.demo.repository.request
   # 配置mapper xml文件所在路径，这里是一个数组
   mapper-locations:
     - mappers/ProductMapper.xml
