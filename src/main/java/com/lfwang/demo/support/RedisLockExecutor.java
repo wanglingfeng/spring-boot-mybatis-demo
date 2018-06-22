@@ -37,7 +37,7 @@ public class RedisLockExecutor {
         try {
             // 获取旧的过期时间
             Long oldExpireTime = Long.valueOf(valueOperations.get(key));
-            if (System.currentTimeMillis() < oldExpireTime) {
+            if (System.currentTimeMillis() <= oldExpireTime) {
                 return false;
             }
         } catch (NumberFormatException e) {
