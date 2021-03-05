@@ -14,11 +14,11 @@ spring:
     namespace: dev
     producer:
       topic:
-        dispatch-coupon: dispatch-coupon
+        dispatch-coupon: test
     consumer:
       subscription-suffix: marketing
       topic:
-        dispatch-coupon: dispatch-coupon
+        dispatch-coupon: test
 
 logging:
   level:

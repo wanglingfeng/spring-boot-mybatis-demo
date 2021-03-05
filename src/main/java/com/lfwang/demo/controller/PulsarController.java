@@ -21,6 +21,7 @@ public class PulsarController {
     @GetMapping
     public void sendMessage() {
         DemoMessage message = new DemoMessage();
+        message.setName("壹加壹等于贰");
         demoMessageProducer.send(message);
     }
 }

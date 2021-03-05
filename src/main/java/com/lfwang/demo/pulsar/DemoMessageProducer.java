@@ -16,4 +16,10 @@ import org.springframework.stereotype.Component;
         subscriptionSuffix = "${spring.pulsar.consumer.subscription-suffix}")
 @Component
 public class DemoMessageProducer extends PulsarMessageProducer<DemoMessage> {
+
+    @Override
+    public void send(DemoMessage msg) {
+        super.send(msg);
+        System.out.println("发出去了");
+    }
 }

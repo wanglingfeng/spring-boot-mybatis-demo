@@ -19,6 +19,6 @@ public class DemoMessageConsumer extends PulsarMessageConsumer<DemoMessage> {
 
     @Override
     public void handleMessage(DemoMessage demoMessage) {
-        System.out.println("1");
+        System.out.println("我收到了: " + demoMessage.getName());
     }
 }
