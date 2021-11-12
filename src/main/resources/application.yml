@@ -6,10 +6,10 @@ spring:
   redis:
     host: localhost
     port: 6379
-  pulsar:
-    service:
-      url: pulsar://cloud-pulsar.ypsx-internal.com:6650
-      token: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxMjU0MzE1NDc4MTM1NjAzMjAxIn0.FqV-P99p3f-sQ30xUyTZno1Vy56DqlixKNcDKfW97fFfoQ6xF2kT-3ItVQ3ogGJkr3lIDN8riVtMedB-_ctkiSa9cauoyKqE9qNmbCwfuaTTmmmhZB7RRstpx2HijAK1p68re45EeohC8Ps3rNimG25eMgJkOSy_DxLA7OCqn46W6GvqR6ijTGtZ6zwXVIpMFh67GkqN7EU1VHSP__CuDX-IoxvlthOBwp_smR7rpZT1dNoIRLgqyfpummhF1KtllGAV8rK2EkUXZDS5BnHtp33n9R4w1AtJbqnQcJCYDkEFYr6Ziopc_U_BASI_W4nBGKQky4URlmsB6bbGi0_i-A
+#  pulsar:
+#    service:
+#      url: pulsar://localhost:6650
+#      token: xxxxxx
     tenant: biz
     namespace: dev
     producer:
